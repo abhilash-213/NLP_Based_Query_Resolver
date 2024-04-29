@@ -110,9 +110,8 @@ def display_conversation(history):
         message(history["generated"][i],key=str(i))
 
 def main():
-    st.markdown("<h1 style='text-align: center; color: blue;'>Chat with your PDF 📄 </h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; color: grey;'>Built by ABD(Aditya,Biki Dey,Deekshith Kumar) </a></h3>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color:red;'>Upload your PDF 👇</h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: blue;'>Chat with your PDF </h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color:red;'>Upload your PDF </h2>", unsafe_allow_html=True)
 
     uploaded_file = st.file_uploader("", type=["pdf"])
 
@@ -159,12 +158,5 @@ def main():
                 display_conversation(st.session_state)
         
 
-        
-
-
-
-
 if __name__ == "__main__":
     main()
-
-
