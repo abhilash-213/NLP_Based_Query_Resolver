@@ -95,10 +95,11 @@ def get_file_size(file):
 def displayPDF(file):
     # Opening file from file path
     with open(file, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        pdf_contents = f.read()
+    base64_pdf = base64.b64encode(pdf_contents).decode('utf-8')
 
     # Embedding PDF in HTML
-    pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
+    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
 
     # Displaying File
     st.markdown(pdf_display, unsafe_allow_html=True)
@@ -110,8 +111,9 @@ def display_conversation(history):
         message(history["generated"][i],key=str(i))
 
 def main():
-    st.markdown("<h1 style='text-align: center; color: blue;'>Chat with your PDF </h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center; color:red;'>Upload your PDF </h2>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center; color: blue;'>Query Resolver : Unleashing the PDF 📄 Insights with NLP  </h1>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: grey;'>A Project on Genrative AI by Group - 20 </a></h3>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color:red;'>Upload your PDF 👇</h2>", unsafe_allow_html=True)
 
     uploaded_file = st.file_uploader("", type=["pdf"])
 
@@ -136,8 +138,6 @@ def main():
                 ingested_data = data_ingestion()
             st.success('Embeddings are created successfully!')
             st.markdown("<h4 style color:black;'>Chat Here</h4>", unsafe_allow_html=True)
-
-
             user_input = st.text_input("", key="input")
 
             # Initialize session state for generated responses and past messages
@@ -157,6 +157,5 @@ def main():
             if st.session_state["generated"]:
                 display_conversation(st.session_state)
         
-
 if __name__ == "__main__":
     main()
